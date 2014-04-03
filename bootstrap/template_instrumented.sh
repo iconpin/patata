@@ -13,6 +13,9 @@ RESULTS_DIR=PATH_TO_RESULTS_DIR
 
 export OMP_NUM_THREADS=NTHREADS
 
+export NX_INSTRUMENTATION=INSTRUMENTATION
+export EXTRAE_CONFIG_FILE=extrae.xml
+
 ## Bring and compile benchmark in the local hard drive
 cd ${TMPDIR}
 cp -r PATH_TO_BENCHMARK_DIR benchmark_dir
