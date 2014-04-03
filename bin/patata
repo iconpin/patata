@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+module Patata
+
+  def self.usage
+    puts 'patata [submit DIR | bootstrap]'
+    exit
+  end
+
+  def self.main(args)
+    case args[0]
+    when '-h'
+      usage
+    when '--help'
+      usage
+    when 'help'
+      usage
+    when 'submit'
+      dir = args[1]
+      usage unless dir
+      usage unless File.exist?(dir)
+
+      Dir.foreach(dir) do |file|
+        next if file == '.'
+        next if file == '..'
+        Kernel.system("mnsubmit #{File.expand_path(File.join(dir, file))}")
+      end
+    when 'bootstrap'
+      bootstrap_path = File.expand_path(File.join(File.dirname(__FILE__), '../bootstrap'))
+      generator_path = File.join(bootstrap_path, 'generator.sh')
+      template_path = File.join(bootstrap_path, 'template.sh')
+      target_dir = File.join(Dir.pwd, 'scripts')
+      FileUtils.mkdir(target_dir)
+      FileUtils.cp(generator_path, target_dir)
+      FileUtils.cp(template_path, target_dir)
+      puts '-> scripts folder created'
+      puts '-> feel free to customize the generator and template scripts'
+    else
+      usage
+    end
+  end
+end
+
+Patata::main(ARGV)
