@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+
+for job_script in $( ls $1 ); do mnsubmit $job_script; done

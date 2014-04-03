@@ -4,3 +4,4 @@ module load CUDA/5.0
 export PARAVER_BIN_DIR=/gpfs/apps/NVIDIA/CEPBATOOLS/wxparaver/latest/bin
 
 export PATH=$PARAVER_BIN_DIR:$PATH
+
