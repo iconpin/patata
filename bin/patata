@@ -31,10 +31,14 @@ module Patata
       bootstrap_path = File.expand_path(File.join(File.dirname(__FILE__), '../bootstrap'))
       generator_path = File.join(bootstrap_path, 'generator.sh')
       template_path = File.join(bootstrap_path, 'template.sh')
+      template_instrumented_path = File.join(bootstrap_path, 'template_instrumented.sh')
+
       target_dir = File.join(Dir.pwd, 'scripts')
       FileUtils.mkdir(target_dir)
+
       FileUtils.cp(generator_path, target_dir)
       FileUtils.cp(template_path, target_dir)
+      FileUtils.cp(template_instrumented_path, target_dir)
       puts '-> scripts folder created'
       puts '-> feel free to customize the generator and template scripts'
     else
